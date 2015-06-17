@@ -65,15 +65,21 @@ textarea {
 #loginForm 
 {
     display: inline-block;
-    margin-left: 860px;
+    margin-left: 822px;
     text-align: center;
 }
 
 #regForm 
 {
     display: inline-block;
-    margin-left: 860px;
+    margin-left: 822px;
     text-align: center;
+    width:525px;
+}
+
+#formBorder 
+{
+    width: 255px;
 }
 
 #links 

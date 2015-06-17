@@ -10,6 +10,7 @@ namespace LoginLogout.Controllers
 {
     public class UserController : Controller
     {
+        contactsdatabaseEntities db = new contactsdatabaseEntities();
 
         public ActionResult Index()
         {
@@ -51,8 +52,8 @@ namespace LoginLogout.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (var db = new contactsdatabaseEntities())
-                {
+                using (db)
+                {                   
                     //Skapar en instans av SimpleCrypto NuGet Package.
                     var crypto = new SimpleCrypto.PBKDF2();
                     //Krypterar lösenordet.
@@ -65,10 +66,11 @@ namespace LoginLogout.Controllers
                     sysUser.PasswordSalt = crypto.Salt;
                     sysUser.UserID = Guid.NewGuid();
 
+                 
                     db.Users.Add(sysUser);
                     db.SaveChanges();
 
-                    return RedirectToAction("Index", "User");
+                    return RedirectToAction("Index", "User");          
                 }
             }
             else
@@ -78,6 +80,25 @@ namespace LoginLogout.Controllers
             return View();
         }
 
+        public ActionResult RemoteValidation(User pd)
+        {
+            return View(pd);
+        }
+
+        public JsonResult doesEmailExist(string Email)
+        {
+            var data = db.Users.Where(p => p.Email.Equals(Email, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+
+            if (data != null)
+            {
+                return Json("Denna email är upptagen", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+        }
+     
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
@@ -90,7 +111,7 @@ namespace LoginLogout.Controllers
 
             bool isVaild = false;
 
-            using (var db = new contactsdatabaseEntities())
+            using (db)
             {
                 var user = db.Users.FirstOrDefault(u => u.Email == email);
 

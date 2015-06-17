@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace LoginLogout.Models
 {
@@ -12,6 +13,7 @@ namespace LoginLogout.Models
         [EmailAddress]
         [StringLength(150)]
         [Display(Name="Email:")]
+        [Remote("doesEmailExist", "User")]
         public string Email { get; set; }
 
         [Required]

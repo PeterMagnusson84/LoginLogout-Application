@@ -10,14 +10,14 @@
         {
             @Html.ValidationSummary(true, "Inloggning misslyckades, var vänlig försök igen.");
             <div>
-                <fieldset>
+                <fieldset id="formBorder">
                     <legend>Inloggningsformulär</legend>
                     <div>@Html.LabelFor(u => u.Email)</div>
-                    <div>@Html.TextBoxFor(u => u.Email) @Html.ValidationMessageFor(u => u.Email)</div>
+                    <div>@Html.TextBoxFor(u => u.Email) <br /> @Html.ValidationMessageFor(u => u.Email)</div>
 
                     <div>@Html.LabelFor(u => u.Password)</div>
-                    <div>@Html.PasswordFor(u => u.Password) @Html.ValidationMessageFor(u => u.Password)</div>
-
+                    <div>@Html.PasswordFor(u => u.Password) <br/> @Html.ValidationMessageFor(u => u.Password)</div>
+                    <br />
                     <input type="submit" value="Logga in" />
                 </fieldset>
             </div>

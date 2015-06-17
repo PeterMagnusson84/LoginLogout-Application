@@ -3,24 +3,29 @@
 @{
     ViewBag.Title = "Registration";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 <body>
     <div id ="regForm">
         @using (Html.BeginForm())
         {
+            @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "Skapandet av användare misslyckades.");
             <div>
-                <fieldset>
-                    <legend>Registreringsformulär</legend>
+                <fieldset id="formBorder">
+                    <legend>Registrering</legend>
                     <div>@Html.LabelFor(u => u.Email)</div>
-                    <div>@Html.TextBoxFor(u => u.Email) @Html.ValidationMessageFor(u => u.Email)</div>
+                    <div>@Html.TextBoxFor(u => u.Email) <br /> @Html.ValidationMessageFor(u => u.Email)</div>
 
                     <div>@Html.LabelFor(u => u.Password)</div>
-                    <div>@Html.PasswordFor(u => u.Password) @Html.ValidationMessageFor(u => u.Password)</div>
-
+                    <div>@Html.PasswordFor(u => u.Password) <br /> @Html.ValidationMessageFor(u => u.Password)</div>
+                    <br />
                     <input type="submit" value="Skapa användare" />
                 </fieldset>
             </div>
         }
+       @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    }
     </div>
 </body>
