@@ -3,4 +3,4 @@
 ASP.NET MVC
 
 
-loginlogout.azurewebsites.net
+http://loginlogout.azurewebsites.net/
