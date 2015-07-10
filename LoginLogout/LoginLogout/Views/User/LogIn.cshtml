@@ -11,7 +11,7 @@
             @Html.ValidationSummary(true, "Inloggning misslyckades, var vänlig försök igen.");
             <div>
                 <fieldset id="formBorder">
-                    <legend>Inloggningsformulär</legend>
+                    <div id="toDoText">Inloggningsformulär</div>
                     <div>@Html.LabelFor(u => u.Email)</div>
                     <div>@Html.TextBoxFor(u => u.Email) <br /> @Html.ValidationMessageFor(u => u.Email)</div>
 

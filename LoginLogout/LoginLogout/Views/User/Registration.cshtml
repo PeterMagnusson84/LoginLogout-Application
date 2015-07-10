@@ -13,7 +13,7 @@
             @Html.ValidationSummary(true, "Skapandet av användare misslyckades.");
             <div>
                 <fieldset id="formBorder">
-                    <legend>Registrering</legend>
+                    <div id="toDoText">Registrering</div>
                     <div>@Html.LabelFor(u => u.Email)</div>
                     <div>@Html.TextBoxFor(u => u.Email) <br /> @Html.ValidationMessageFor(u => u.Email)</div>
 
